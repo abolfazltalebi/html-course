@@ -1,0 +1,236 @@
+/* ---------- تنظیمات پایه ---------- */
+:root {
+  --blue: #2f6feb;
+  --blue-dark: #2559c7;
+  --blue-light: #eaf1ff;
+  --text: #1e2530;
+  --text-muted: #6b7480;
+  --border: #e6e9ef;
+  --bg: #ffffff;
+  --page-bg: #f4f6fa;
+  --radius: 14px;
+  --shadow: 0 4px 16px rgba(30, 40, 60, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--page-bg);
+  color: var(--text);
+  font-family: 'Vazirmatn', Tahoma, sans-serif;
+  min-height: 100vh;
+}
+
+/* ---------- کانتینر اصلی ---------- */
+.app {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 32px 20px 60px;
+}
+
+.app-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.app-header h1 {
+  font-size: 26px;
+  font-weight: 700;
+  margin: 0 0 6px;
+  color: var(--text);
+}
+
+.subtitle {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+/* ---------- باکس افزودن ---------- */
+.add-box {
+  display: flex;
+  gap: 8px;
+  background: var(--bg);
+  padding: 14px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+#reminderInput {
+  flex: 1;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-size: 15px;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+#reminderInput:focus {
+  border-color: var(--blue);
+}
+
+#addBtn {
+  background: var(--blue);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 0 20px;
+  font-size: 15px;
+  font-family: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease;
+  white-space: nowrap;
+}
+
+#addBtn:hover {
+  background: var(--blue-dark);
+}
+
+.hint {
+  font-size: 12.5px;
+  color: var(--text-muted);
+  margin: 10px 4px 20px;
+  line-height: 1.9;
+}
+
+/* ---------- وضعیت اعلان ---------- */
+.notif-status {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+  padding: 0 4px;
+}
+
+.notif-status.blocked {
+  color: #c0392b;
+}
+
+/* ---------- لیست یادآورها ---------- */
+.reminders-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.reminder-card {
+  background: var(--bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.reminder-card.done {
+  opacity: 0.5;
+}
+
+.reminder-card.done .reminder-title {
+  text-decoration: line-through;
+}
+
+.reminder-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.reminder-title {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0 0 4px;
+  word-break: break-word;
+}
+
+.reminder-meta {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.badge {
+  display: inline-block;
+  font-size: 12px;
+  background: var(--blue-light);
+  color: var(--blue-dark);
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-weight: 500;
+}
+
+.badge.daily {
+  background: #fff2e0;
+  color: #b56a00;
+}
+
+/* ---------- دکمه‌های کارت ---------- */
+.reminder-actions {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.icon-btn {
+  border: none;
+  background: var(--border);
+  color: var(--text);
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease;
+}
+
+.icon-btn.complete {
+  background: var(--blue-light);
+  color: var(--blue-dark);
+}
+
+.icon-btn.complete:hover {
+  background: #d7e6ff;
+}
+
+.icon-btn.delete {
+  background: #fdeceb;
+  color: #c0392b;
+}
+
+.icon-btn.delete:hover {
+  background: #fbd9d6;
+}
+
+/* ---------- حالت خالی ---------- */
+.empty-state {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 14px;
+  margin-top: 30px;
+  display: none;
+}
+
+/* ---------- ریسپانسیو ---------- */
+@media (max-width: 480px) {
+  .add-box {
+    flex-direction: column;
+  }
+
+  #addBtn {
+    padding: 12px;
+  }
+
+  .reminder-card {
+    flex-wrap: wrap;
+  }
+}

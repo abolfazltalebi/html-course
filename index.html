@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>یادآور روزانه</title>
+
+    <!-- فونت وزیرمتن (در صورت اتصال به اینترنت لود می‌شود، در غیر اینصورت فونت جایگزین سیستم استفاده می‌شود) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="app-header">
+        <h1>یادآور روزانه</h1>
+        <p class="subtitle">
+          کارهات رو بنویس، هر ۳۰ ثانیه چک می‌کنم و سر وقت یادت میارم
+        </p>
+      </header>
+
+      <!-- فرم افزودن یادآور -->
+      <section class="add-box">
+        <input
+          type="text"
+          id="reminderInput"
+          placeholder="مثلا: امروز ساعت ۵ تکالیف گروه فرانت"
+          autocomplete="off"
+        />
+        <button id="addBtn">افزودن یادآور</button>
+      </section>
+
+      <p class="hint">
+        نمونه‌ها: «امروز ساعت ۱۷ تکالیف فرانت» ، «فردا ساعت ۱۰ تماس با علی» ،
+        «شنبه ساعت ۹ کلاس وردپرس» ، «هر روز ساعت ۸ ورزش»
+      </p>
+
+      <!-- وضعیت اعلان مرورگر -->
+      <div id="notifStatus" class="notif-status"></div>
+
+      <!-- لیست کارت‌های یادآور -->
+      <section id="remindersList" class="reminders-list"></section>
+
+      <p id="emptyState" class="empty-state">هنوز یادآوری اضافه نکردی</p>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
