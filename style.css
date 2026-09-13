@@ -1,236 +1,455 @@
-/* ---------- تنظیمات پایه ---------- */
+/* =========================================================
+   راهنمای HTML — استایل‌شیت
+   فونت: Vazirmatn (متن) + پشته مونواسپیس سیستمی (کد)
+   ========================================================= */
+
 :root {
-  --blue: #2f6feb;
-  --blue-dark: #2559c7;
-  --blue-light: #eaf1ff;
-  --text: #1e2530;
-  --text-muted: #6b7480;
-  --border: #e6e9ef;
-  --bg: #ffffff;
-  --page-bg: #f4f6fa;
-  --radius: 14px;
-  --shadow: 0 4px 16px rgba(30, 40, 60, 0.08);
+  --bg: #faf8f5;
+  --bg-panel: #f2ede4;
+  --ink: #211c17;
+  --ink-soft: #5a5249;
+  --line: #e6ddd0;
+  --accent: #d6501f;
+  --accent-ink: #ffffff;
+  --accent-tint: #f6ddce;
+
+  --code-bg: #221d18;
+  --code-fg: #eee7dc;
+  --code-tag: #f0955a;
+  --code-attr: #d9b36c;
+  --code-str: #9ac89a;
+  --code-comment: #8a8178;
+  --code-bar: #2c261f;
+
+  --radius: 10px;
+  --content-max: 46rem;
+  --font-fa: "Vazirmatn", "Tahoma", sans-serif;
+  --font-code: ui-monospace, "Consolas", "SFMono-Regular", Menlo, monospace;
 }
 
-* {
-  box-sizing: border-box;
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }
 
 body {
   margin: 0;
-  padding: 0;
-  background: var(--page-bg);
-  color: var(--text);
-  font-family: 'Vazirmatn', Tahoma, sans-serif;
-  min-height: 100vh;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-fa);
+  font-size: 17px;
+  line-height: 1.85;
+  direction: rtl;
 }
 
-/* ---------- کانتینر اصلی ---------- */
-.app {
-  max-width: 640px;
+h1, h2, h3 { font-family: var(--font-fa); color: var(--ink); line-height: 1.35; }
+p { margin: 0 0 1.1em; }
+
+a { color: var(--accent); }
+
+code {
+  font-family: var(--font-code);
+  direction: ltr;
+  unicode-bidi: isolate;
+  background: var(--accent-tint);
+  color: #8a3210;
+  padding: 0.1em 0.4em;
+  border-radius: 5px;
+  font-size: 0.86em;
+}
+
+/* skip link */
+.skip-link {
+  position: absolute;
+  right: -9999px;
+  top: 0;
+  background: var(--ink);
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 0 0 8px 8px;
+  z-index: 200;
+}
+.skip-link:focus {
+  right: 12px;
+}
+
+/* focus visibility */
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* =========================================================
+   Header
+   ========================================================= */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(250, 248, 245, 0.9);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+.site-header__inner {
+  max-width: 76rem;
+  margin: 0 auto;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+.brand__mark {
+  font-family: var(--font-code);
+  direction: ltr;
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.toc-toggle {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--ink);
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-family: var(--font-fa);
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+.toc-toggle__icon {
+  width: 14px;
+  height: 10px;
+  position: relative;
+  display: inline-block;
+}
+.toc-toggle__icon::before,
+.toc-toggle__icon::after,
+.toc-toggle__icon {
+  background: currentColor;
+}
+.toc-toggle__icon,
+.toc-toggle__icon::before,
+.toc-toggle__icon::after {
+  height: 2px;
+  border-radius: 2px;
+}
+.toc-toggle__icon { top: 4px; }
+.toc-toggle__icon::before,
+.toc-toggle__icon::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  left: 0;
+}
+.toc-toggle__icon::before { top: -4px; }
+.toc-toggle__icon::after { top: 4px; }
+
+/* =========================================================
+   Layout: sidebar + content
+   ========================================================= */
+.layout {
+  max-width: 76rem;
   margin: 0 auto;
   padding: 32px 20px 60px;
+  display: grid;
+  grid-template-columns: 1fr 220px;
+  gap: 48px;
+  align-items: start;
 }
 
-.app-header {
-  text-align: center;
-  margin-bottom: 24px;
+.toc {
+  order: 2;
+  position: sticky;
+  top: 76px;
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+  padding-inline-start: 16px;
+  border-right: 1px solid var(--line);
 }
-
-.app-header h1 {
-  font-size: 26px;
-  font-weight: 700;
-  margin: 0 0 6px;
-  color: var(--text);
+.toc__label {
+  margin: 0 0 10px;
+  font-size: 0.78rem;
+  color: var(--ink-soft);
 }
-
-.subtitle {
+.toc__list {
+  list-style: none;
   margin: 0;
-  color: var(--text-muted);
-  font-size: 14px;
-}
-
-/* ---------- باکس افزودن ---------- */
-.add-box {
-  display: flex;
-  gap: 8px;
-  background: var(--bg);
-  padding: 14px;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-}
-
-#reminderInput {
-  flex: 1;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 12px 14px;
-  font-size: 15px;
-  font-family: inherit;
-  outline: none;
-  transition: border-color 0.15s ease;
-}
-
-#reminderInput:focus {
-  border-color: var(--blue);
-}
-
-#addBtn {
-  background: var(--blue);
-  color: #fff;
-  border: none;
-  border-radius: 10px;
-  padding: 0 20px;
-  font-size: 15px;
-  font-family: inherit;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.15s ease;
-  white-space: nowrap;
-}
-
-#addBtn:hover {
-  background: var(--blue-dark);
-}
-
-.hint {
-  font-size: 12.5px;
-  color: var(--text-muted);
-  margin: 10px 4px 20px;
-  line-height: 1.9;
-}
-
-/* ---------- وضعیت اعلان ---------- */
-.notif-status {
-  font-size: 13px;
-  color: var(--text-muted);
-  margin-bottom: 14px;
-  padding: 0 4px;
-}
-
-.notif-status.blocked {
-  color: #c0392b;
-}
-
-/* ---------- لیست یادآورها ---------- */
-.reminders-list {
+  padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 2px;
 }
-
-.reminder-card {
-  background: var(--bg);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  padding: 14px 16px;
+.toc__list a {
   display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.reminder-card.done {
-  opacity: 0.5;
-}
-
-.reminder-card.done .reminder-title {
-  text-decoration: line-through;
-}
-
-.reminder-main {
-  flex: 1;
-  min-width: 0;
-}
-
-.reminder-title {
-  font-size: 15px;
-  font-weight: 600;
-  margin: 0 0 4px;
-  word-break: break-word;
-}
-
-.reminder-meta {
-  display: flex;
+  align-items: baseline;
   gap: 8px;
-  align-items: center;
-  flex-wrap: wrap;
+  text-decoration: none;
+  color: var(--ink-soft);
+  padding: 6px 8px;
+  border-radius: 6px;
+  font-size: 0.88rem;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+.toc__list a:hover { background: var(--bg-panel); color: var(--ink); }
+.toc__num {
+  font-size: 0.72rem;
+  color: var(--accent);
+  font-family: var(--font-code);
+  direction: ltr;
+}
+.toc__list a.is-active {
+  background: var(--accent-tint);
+  color: #8a3210;
+  font-weight: 600;
 }
 
-.badge {
+.content { order: 1; min-width: 0; }
+
+/* =========================================================
+   Hero
+   ========================================================= */
+.hero {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 40px;
+  align-items: center;
+  padding: 20px 0 56px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 48px;
+}
+.hero__kicker {
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 0.85rem;
+  margin: 0 0 12px;
+}
+.hero h1 {
+  font-size: clamp(1.9rem, 3.4vw, 2.7rem);
+  font-weight: 800;
+  margin: 0 0 16px;
+}
+.hero__lede {
+  color: var(--ink-soft);
+  font-size: 1.05rem;
+  max-width: 34ch;
+}
+.btn {
   display: inline-block;
-  font-size: 12px;
-  background: var(--blue-light);
-  color: var(--blue-dark);
-  padding: 3px 9px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 12px 26px;
   border-radius: 999px;
-  font-weight: 500;
+  margin-top: 8px;
 }
+.btn:hover { background: #b8420f; }
 
-.badge.daily {
-  background: #fff2e0;
-  color: #b56a00;
+.hero__code .code-block { margin: 0; }
+
+/* =========================================================
+   Chapters
+   ========================================================= */
+.chapter {
+  padding-top: 12px;
+  margin-bottom: 56px;
+  scroll-margin-top: 84px;
 }
-
-/* ---------- دکمه‌های کارت ---------- */
-.reminder-actions {
+.chapter__head {
   display: flex;
-  gap: 6px;
-  flex-shrink: 0;
+  align-items: baseline;
+  gap: 14px;
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+  border-bottom: 2px solid var(--ink);
 }
+.chapter__num {
+  font-family: var(--font-code);
+  direction: ltr;
+  color: var(--accent);
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+.chapter h2 { font-size: 1.5rem; font-weight: 700; margin: 0; }
+.chapter h3 { font-size: 1.08rem; font-weight: 700; margin: 28px 0 12px; }
 
-.icon-btn {
-  border: none;
-  background: var(--border);
-  color: var(--text);
-  width: 34px;
-  height: 34px;
-  border-radius: 9px;
-  cursor: pointer;
-  font-size: 16px;
+.list {
+  margin: 0 0 1.2em;
+  padding-inline-start: 22px;
+}
+.list li { margin-bottom: 8px; }
+
+/* =========================================================
+   Code blocks
+   ========================================================= */
+.code-block {
+  background: var(--code-bg);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin: 0 0 20px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+}
+.code-block__bar {
   display: flex;
   align-items: center;
-  justify-content: center;
-  transition: background 0.15s ease;
+  gap: 8px;
+  padding: 9px 14px;
+  background: var(--code-bar);
+  direction: ltr;
+}
+.code-block__dot {
+  width: 9px; height: 9px; border-radius: 50%;
+  background: #55504a;
+  display: inline-block;
+}
+.code-block__name {
+  margin-inline-start: 8px;
+  color: var(--code-comment);
+  font-family: var(--font-code);
+  font-size: 0.78rem;
+}
+.code-block__pre {
+  margin: 0;
+  padding: 16px 18px;
+  overflow-x: auto;
+  direction: ltr;
+  text-align: left;
+}
+.code-block__pre code {
+  background: none;
+  color: var(--code-fg);
+  padding: 0;
+  border-radius: 0;
+  font-size: 0.86rem;
+  line-height: 1.7;
+  white-space: pre;
 }
 
-.icon-btn.complete {
-  background: var(--blue-light);
-  color: var(--blue-dark);
-}
+/* hand-rolled syntax highlight spans, applied by script.js */
+.tok-tag { color: var(--code-tag); }
+.tok-attr { color: var(--code-attr); }
+.tok-str { color: var(--code-str); }
+.tok-comment { color: var(--code-comment); font-style: italic; }
 
-.icon-btn.complete:hover {
-  background: #d7e6ff;
+/* =========================================================
+   Tables
+   ========================================================= */
+.table-wrap { overflow-x: auto; margin-bottom: 20px; }
+.tbl {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
 }
-
-.icon-btn.delete {
-  background: #fdeceb;
-  color: #c0392b;
+.tbl th, .tbl td {
+  padding: 10px 14px;
+  text-align: right;
+  border-bottom: 1px solid var(--line);
 }
-
-.icon-btn.delete:hover {
-  background: #fbd9d6;
+.tbl th {
+  background: var(--bg-panel);
+  font-weight: 700;
+  color: var(--ink);
 }
+.tbl tr:last-child td { border-bottom: none; }
 
-/* ---------- حالت خالی ---------- */
-.empty-state {
+/* =========================================================
+   Notes / callouts
+   ========================================================= */
+.note {
+  background: var(--bg-panel);
+  border-right: 3px solid var(--accent);
+  padding: 14px 18px;
+  border-radius: 0 8px 8px 0;
+  margin: 0 0 20px;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+.note p { margin: 0; }
+
+/* =========================================================
+   details demo
+   ========================================================= */
+.demo-details {
+  background: var(--bg-panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 14px 18px;
+  margin-bottom: 20px;
+}
+.demo-details summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+.demo-details p { margin-top: 12px; margin-bottom: 0; color: var(--ink-soft); }
+
+/* =========================================================
+   Footer
+   ========================================================= */
+.site-footer {
+  border-top: 1px solid var(--line);
+  padding: 28px 20px 40px;
   text-align: center;
-  color: var(--text-muted);
-  font-size: 14px;
-  margin-top: 30px;
-  display: none;
+  color: var(--ink-soft);
+  font-size: 0.85rem;
 }
 
-/* ---------- ریسپانسیو ---------- */
-@media (max-width: 480px) {
-  .add-box {
-    flex-direction: column;
+/* =========================================================
+   Responsive
+   ========================================================= */
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
   }
+  .hero__lede { max-width: none; }
 
-  #addBtn {
-    padding: 12px;
+  .layout {
+    grid-template-columns: 1fr;
   }
+  .toc-toggle { display: inline-flex; }
 
-  .reminder-card {
-    flex-wrap: wrap;
+  .toc {
+    order: -1;
+    position: fixed;
+    inset-inline: 12px;
+    top: 68px;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 16px;
+    box-shadow: 0 12px 28px rgba(30, 24, 18, 0.14);
+    max-height: 70vh;
+    z-index: 40;
+    transform: translateY(-12px);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.18s ease, opacity 0.18s ease;
   }
+  .toc.is-open {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+@media (max-width: 560px) {
+  body { font-size: 16px; }
+  .layout { padding: 24px 16px 48px; }
 }

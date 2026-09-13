@@ -3,50 +3,632 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>یادآور روزانه</title>
-
-    <!-- فونت وزیرمتن (در صورت اتصال به اینترنت لود می‌شود، در غیر اینصورت فونت جایگزین سیستم استفاده می‌شود) -->
+    <title>راهنمای HTML — از ساختار پایه تا ویژگی‌های ۲۰۲۶</title>
+    <meta
+      name="description"
+      content="راهنمای کامل HTML برای دانشجویان: ساختار سند، عناصر معنایی، فرم‌ها، دسترس‌پذیری و جدیدترین قابلیت‌های بومی مثل Popover، Dialog و Invoker Commands."
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="app">
-      <header class="app-header">
-        <h1>یادآور روزانه</h1>
-        <p class="subtitle">
-          کارهات رو بنویس، هر ۳۰ ثانیه چک می‌کنم و سر وقت یادت میارم
-        </p>
-      </header>
+    <a class="skip-link" href="#main">رفتن به محتوای اصلی</a>
 
-      <!-- فرم افزودن یادآور -->
-      <section class="add-box">
-        <input
-          type="text"
-          id="reminderInput"
-          placeholder="مثلا: امروز ساعت ۵ تکالیف گروه فرانت"
-          autocomplete="off"
-        />
-        <button id="addBtn">افزودن یادآور</button>
-      </section>
+    <header class="site-header">
+      <div class="site-header__inner">
+        <a class="brand" href="#top">
+          <span class="brand__mark" aria-hidden="true">&lt;/&gt;</span>
+          <span class="brand__text">راهنمای HTML</span>
+        </a>
+        <button
+          class="toc-toggle"
+          id="tocToggle"
+          aria-expanded="false"
+          aria-controls="toc"
+        >
+          <span>فهرست فصل‌ها</span>
+          <span class="toc-toggle__icon" aria-hidden="true"></span>
+        </button>
+      </div>
+    </header>
 
-      <p class="hint">
-        نمونه‌ها: «امروز ساعت ۱۷ تکالیف فرانت» ، «فردا ساعت ۱۰ تماس با علی» ،
-        «شنبه ساعت ۹ کلاس وردپرس» ، «هر روز ساعت ۸ ورزش»
-      </p>
+    <div class="layout" id="top">
+      <nav class="toc" id="toc" aria-label="فهرست فصل‌ها">
+        <p class="toc__label">فهرست فصل‌ها</p>
+        <ol class="toc__list">
+          <li>
+            <a href="#ch-01"><span class="toc__num">۰۱</span>آشنایی با HTML</a>
+          </li>
+          <li>
+            <a href="#ch-02"><span class="toc__num">۰۲</span>متن و لیست‌ها</a>
+          </li>
+          <li>
+            <a href="#ch-03"><span class="toc__num">۰۳</span>عناصر معنایی</a>
+          </li>
+          <li>
+            <a href="#ch-04"
+              ><span class="toc__num">۰۴</span>لینک، تصویر و رسانه</a
+            >
+          </li>
+          <li>
+            <a href="#ch-05"><span class="toc__num">۰۵</span>جدول‌ها</a>
+          </li>
+          <li>
+            <a href="#ch-06"><span class="toc__num">۰۶</span>فرم‌ها</a>
+          </li>
+          <li>
+            <a href="#ch-07"
+              ><span class="toc__num">۰۷</span>ویژگی‌ها و data-*</a
+            >
+          </li>
+          <li>
+            <a href="#ch-08"><span class="toc__num">۰۸</span>دسترس‌پذیری</a>
+          </li>
+          <li>
+            <a href="#ch-09"
+              ><span class="toc__num">۰۹</span>details و summary</a
+            >
+          </li>
+          <li>
+            <a href="#ch-10"><span class="toc__num">۱۰</span>قابلیت‌های ۲۰۲۶</a>
+          </li>
+          <li>
+            <a href="#ch-11"><span class="toc__num">۱۱</span>متادیتا و سئو</a>
+          </li>
+          <li>
+            <a href="#ch-12"><span class="toc__num">۱۲</span>بهترین شیوه‌ها</a>
+          </li>
+          <li>
+            <a href="#ch-13"><span class="toc__num">۱۳</span>جمع‌بندی</a>
+          </li>
+        </ol>
+      </nav>
 
-      <!-- وضعیت اعلان مرورگر -->
-      <div id="notifStatus" class="notif-status"></div>
+      <main class="content" id="main">
+        <section class="hero">
+          <div class="hero__text">
+            <p class="hero__kicker">جزوه آموزشی — ویرایش ۲۰۲۶</p>
+            <h1>ساختار وب را با HTML یاد بگیرید</h1>
+            <p class="hero__lede">
+              از اولین تگ تا عناصر معنایی، فرم‌های استاندارد، دسترس‌پذیری و
+              جدیدترین قابلیت‌های بومی مرورگر — سیزده فصل، با مثال‌های کد واقعی.
+            </p>
+            <a class="btn" href="#ch-01">شروع مطالعه</a>
+          </div>
+          <div class="hero__code" aria-hidden="true">
+            <div class="code-block">
+              <div class="code-block__bar">
+                <span class="code-block__dot"></span>
+                <span class="code-block__dot"></span>
+                <span class="code-block__dot"></span>
+                <span class="code-block__name">index.html</span>
+              </div>
+              <pre
+                class="code-block__pre"
+              ><code class="lang-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="fa" dir="rtl"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;صفحه من&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;سلام دنیا&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            </div>
+          </div>
+        </section>
 
-      <!-- لیست کارت‌های یادآور -->
-      <section id="remindersList" class="reminders-list"></section>
+        <article>
+          <section class="chapter" id="ch-01">
+            <header class="chapter__head">
+              <span class="chapter__num">۰۱</span>
+              <h2>آشنایی با HTML</h2>
+            </header>
+            <p>
+              HTML (مخفف HyperText Markup Language) زبان نشانه‌گذاری استانداردی
+              است که ساختار و محتوای صفحات وب را مشخص می‌کند. هر صفحه از تعدادی
+              «عنصر» تشکیل شده که هرکدام با یک «تگ» مشخص می‌شوند. HTML ظاهر صفحه
+              را کنترل نمی‌کند — این کار بر عهده CSS است — بلکه معنا و ساختار
+              محتوا را تعریف می‌کند.
+            </p>
 
-      <p id="emptyState" class="empty-state">هنوز یادآوری اضافه نکردی</p>
+            <h3>ساختار پایه یک سند</h3>
+            <div class="code-block">
+              <div class="code-block__bar">
+                <span class="code-block__name">boilerplate.html</span>
+              </div>
+              <pre
+                class="code-block__pre"
+              ><code class="lang-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="fa" dir="rtl"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;عنوان صفحه&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;سلام دنیا&lt;/h1&gt;
+  &lt;p&gt;این یک پاراگراف است.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            </div>
+            <aside class="note">
+              <p>
+                برای صفحات فارسی همیشه <code>lang="fa"</code> و
+                <code>dir="rtl"</code> را روی تگ
+                <code>&lt;html&gt;</code> بگذارید تا جهت متن و رفتار پیش‌فرض
+                عناصر (فرم‌ها، اسکرول‌بار) درست تنظیم شود.
+              </p>
+            </aside>
+
+            <h3>اجزای یک تگ</h3>
+            <ul class="list">
+              <li>تگ باز و بسته: <code>&lt;p&gt; ... &lt;/p&gt;</code></li>
+              <li>
+                عنصر خالی (بدون تگ بسته): <code>&lt;br&gt;</code>،
+                <code>&lt;img&gt;</code>، <code>&lt;input&gt;</code>،
+                <code>&lt;hr&gt;</code>
+              </li>
+              <li>
+                ویژگی (Attribute): جفت‌های <code>name="value"</code> داخل تگ باز
+              </li>
+            </ul>
+            <div class="code-block">
+              <div class="code-block__bar">
+                <span class="code-block__name">example.html</span>
+              </div>
+              <pre
+                class="code-block__pre"
+              ><code class="lang-html">&lt;a href="https://example.com" target="_blank" rel="noopener"&gt;لینک&lt;/a&gt;
+&lt;img src="pic.jpg" alt="توضیح تصویر" width="300"&gt;</code></pre>
+            </div>
+          </section>
+
+          <section class="chapter" id="ch-02">
+            <header class="chapter__head">
+              <span class="chapter__num">۰۲</span>
+              <h2>متن و لیست‌ها</h2>
+            </header>
+
+            <h3>عناوین و پاراگراف</h3>
+            <div class="code-block">
+              <div class="code-block__bar">
+                <span class="code-block__name">headings.html</span>
+              </div>
+              <pre
+                class="code-block__pre"
+              ><code class="lang-html">&lt;h1&gt;عنوان اصلی&lt;/h1&gt;
+&lt;h2&gt;زیرعنوان&lt;/h2&gt;
+&lt;h3&gt;زیرعنوان کوچک‌تر&lt;/h3&gt;
+&lt;p&gt;یک پاراگراف متنی است.&lt;/p&gt;</code></pre>
+            </div>
+            <aside class="note">
+              <p>
+                در هر صفحه فقط یک <code>&lt;h1&gt;</code> باید وجود داشته باشد و
+                سطح عنوان‌ها بدون پرش استفاده شود؛ این هم به سئو و هم به
+                دسترس‌پذیری کمک می‌کند.
+              </p>
+            </aside>
+
+            <h3>تگ‌های تاکیدی و درون‌خطی</h3>
+            <div class="table-wrap">
+              <table class="tbl">
+                <thead>
+                  <tr>
+                    <th>تگ</th>
+                    <th>کاربرد</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><code>&lt;strong&gt;</code></td>
+                    <td>اهمیت معنایی بالا (معمولاً بولد)</td>
+                  </tr>
+                  <tr>
+                    <td><code>&lt;em&gt;</code></td>
+                    <td>تاکید (معمولاً ایتالیک)</td>
+                  </tr>
+                  <tr>
+                    <td><code>&lt;span&gt;</code></td>
+                    <td>بسته‌بندی متن برای استایل‌دهی، بدون معنای خاص</td>
+                  </tr>
+                  <tr>
+                    <td><code>&lt;code&gt;</code></td>
+                    <td>نمایش قطعه کد</td>
+                  </tr>
+                  <tr>
+                    <td><code>&lt;mark&gt;</code></td>
+                    <td>هایلایت کردن متن</td>
+                  </tr>
+                  <tr>
+                    <td><code>&lt;small&gt;</code></td>
+                    <td>متن ریزتر و توضیحات جانبی</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3>لیست‌ها</h3>
+            <div class="code-block">
+              <div class="code-block__bar">
+                <span class="code-block__name">lists.html</span>
+              </div>
+              <pre class="code-block__pre"><code class="lang-html">&lt;ul&gt;
+  &lt;li&gt;چای&lt;/li&gt;
+  &lt;li&gt;قهوه&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;مرحله اول&lt;/li&gt;
+  &lt;li&gt;مرحله دوم&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;dl&gt;
+  &lt;dt&gt;HTML&lt;/dt&gt;
+  &lt;dd&gt;زبان نشانه‌گذاری صفحات وب&lt;/dd&gt;
+&lt;/dl&gt;</code></pre>
+            </div>
+          </section>
+
+          <section class="chapter" id="ch-03">
+            <header class="chapter__head">
+              <span class="chapter__num">۰۳</span>
+              <h2>عناصر معنایی (Semantic HTML5)</h2>
+            </header>
+            <p>
+              عناصر معنایی به مرورگر، موتورهای جست‌وجو و فناوری‌های کمکی
+              می‌گویند هر بخش چه نقشی دارد — نه فقط چگونه به نظر برسد. استفاده
+              از این عناصر به‌جای <code>&lt;div&gt;</code> برای همه‌چیز،
+              استاندارد امروز توسعه وب است.
+            </p>
+
+            <div class="table-wrap">
+              <table class="tbl">
+                <thead>
+                  <tr>
+                    <th>عنصر</th>
+                    <th>نقش</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><code>&lt;header&gt;</code></td>
+                    <td>سربرگ صفحه یا یک بخش</td>
+                  </tr>
+                  <tr>
+                    <td><code>&lt;nav&gt;</code></td>
+                    <td>بخش ناوبری و لینک‌های اصلی</td>
+                  </tr>
+                  <tr>
+                    <td><code>&lt;main&gt;</code></td>
+                    <td>محتوای اصلی صفحه (فقط یک‌بار)</td>
+                  </tr>
+                  <tr>
+                    <td><code>&lt;article&gt;</code></td>
+                    <td>محتوای مستقل و قابل‌انتشار جداگانه</td>
+                  </tr>
+                  <tr>
+                    <td><code>&lt;section&gt;</code></td>
+                    <td>بخش‌بندی موضوعی محتوا</td>
+                  </tr>
+                  <tr>
+                    <td><code>&lt;aside&gt;</code></td>
+                    <td>محتوای جانبی و مرتبط</td>
+                  </tr>
+                  <tr>
+                    <td><code>&lt;footer&gt;</code></td>
+                    <td>پاورقی صفحه یا یک بخش</td>
+                  </tr>
+                  <tr>
+                    <td><code>&lt;figure&gt;</code></td>
+                    <td>تصویر یا نمودار همراه با زیرنویس</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="code-block">
+              <div class="code-block__bar">
+                <span class="code-block__name">semantic.html</span>
+              </div>
+              <pre class="code-block__pre"><code class="lang-html">&lt;body&gt;
+  &lt;header&gt;
+    &lt;h1&gt;نام سایت&lt;/h1&gt;
+    &lt;nav&gt;
+      &lt;a href="/"&gt;خانه&lt;/a&gt;
+      &lt;a href="/about"&gt;درباره ما&lt;/a&gt;
+    &lt;/nav&gt;
+  &lt;/header&gt;
+
+  &lt;main&gt;
+    &lt;article&gt;
+      &lt;h2&gt;عنوان مقاله&lt;/h2&gt;
+      &lt;p&gt;متن مقاله...&lt;/p&gt;
+    &lt;/article&gt;
+    &lt;aside&gt;مطالب مرتبط&lt;/aside&gt;
+  &lt;/main&gt;
+
+  &lt;footer&gt;&amp;copy; ۱۴۰۴&lt;/footer&gt;
+&lt;/body&gt;</code></pre>
+            </div>
+          </section>
+
+          <section class="chapter" id="ch-04">
+            <header class="chapter__head">
+              <span class="chapter__num">۰۴</span>
+              <h2>لینک‌ها، تصاویر و رسانه</h2>
+            </header>
+
+            <h3>لینک‌ها</h3>
+            <div class="code-block">
+              <div class="code-block__bar">
+                <span class="code-block__name">links.html</span>
+              </div>
+              <pre
+                class="code-block__pre"
+              ><code class="lang-html">&lt;a href="page.html"&gt;لینک داخلی&lt;/a&gt;
+&lt;a href="https://example.com" target="_blank" rel="noopener noreferrer"&gt;لینک خارجی&lt;/a&gt;
+&lt;a href="mailto:info@example.com"&gt;ایمیل&lt;/a&gt;
+&lt;a href="tel:+989120000000"&gt;تماس تلفنی&lt;/a&gt;
+&lt;a href="#section2"&gt;لینک به بخشی از همین صفحه&lt;/a&gt;</code></pre>
+            </div>
+            <aside class="note">
+              <p>
+                برای لینک‌هایی که با <code>target="_blank"</code> باز می‌شوند،
+                همیشه <code>rel="noopener noreferrer"</code> اضافه کنید تا از
+                دسترسی صفحه جدید به <code>window.opener</code> جلوگیری شود.
+              </p>
+            </aside>
+
+            <h3>تصاویر واکنش‌گرا</h3>
+            <div class="code-block">
+              <div class="code-block__bar">
+                <span class="code-block__name">images.html</span>
+              </div>
+              <pre
+                class="code-block__pre"
+              ><code class="lang-html">&lt;img src="photo.jpg" alt="توضیح دقیق تصویر" loading="lazy"&gt;
+
+&lt;img
+  src="photo-800.jpg"
+  srcset="photo-400.jpg 400w, photo-800.jpg 800w, photo-1200.jpg 1200w"
+  sizes="(max-width: 600px) 100vw, 50vw"
+  alt="توضیح تصویر"&gt;
+
+&lt;picture&gt;
+  &lt;source srcset="photo.avif" type="image/avif"&gt;
+  &lt;source srcset="photo.webp" type="image/webp"&gt;
+  &lt;img src="photo.jpg" alt="توضیح تصویر"&gt;
+&lt;/picture&gt;</code></pre>
+            </div>
+
+            <h3>صدا و ویدیو</h3>
+            <div class="code-block">
+              <div class="code-block__bar">
+                <span class="code-block__name">media.html</span>
+              </div>
+              <pre
+                class="code-block__pre"
+              ><code class="lang-html">&lt;video controls width="600" poster="cover.jpg"&gt;
+  &lt;source src="movie.mp4" type="video/mp4"&gt;
+&lt;/video&gt;
+
+&lt;audio controls&gt;
+  &lt;source src="sound.mp3" type="audio/mpeg"&gt;
+&lt;/audio&gt;</code></pre>
+            </div>
+          </section>
+
+          <section class="chapter" id="ch-05">
+            <header class="chapter__head">
+              <span class="chapter__num">۰۵</span>
+              <h2>جدول‌ها</h2>
+            </header>
+            <div class="code-block">
+              <div class="code-block__bar">
+                <span class="code-block__name">table.html</span>
+              </div>
+              <pre class="code-block__pre"><code class="lang-html">&lt;table&gt;
+  &lt;caption&gt;لیست دانشجویان&lt;/caption&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;&lt;th&gt;نام&lt;/th&gt;&lt;th&gt;نمره&lt;/th&gt;&lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;&lt;td&gt;علی&lt;/td&gt;&lt;td&gt;۱۸&lt;/td&gt;&lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+            </div>
+            <aside class="note">
+              <p>
+                جدول‌ها فقط برای داده‌های جدولی استفاده شوند، نه چیدمان کلی
+                صفحه؛ برای چیدمان از CSS Grid یا Flexbox استفاده کنید.
+              </p>
+            </aside>
+          </section>
+
+          <section class="chapter" id="ch-06">
+            <header class="chapter__head">
+              <span class="chapter__num">۰۶</span>
+              <h2>فرم‌ها</h2>
+            </header>
+            <p>
+              فرم‌ها راه اصلی دریافت اطلاعات از کاربر هستند. HTML امروزه انواع
+              ورودی و اعتبارسنجی پیشرفته‌ای را بدون نیاز به جاوااسکریپت ارائه
+              می‌دهد.
+            </p>
+
+            <div class="code-block">
+              <div class="code-block__bar">
+                <span class="code-block__name">form.html</span>
+              </div>
+              <pre
+                class="code-block__pre"
+              ><code class="lang-html">&lt;form action="/submit" method="post"&gt;
+  &lt;label for="name"&gt;نام:&lt;/label&gt;
+  &lt;input type="text" id="name" name="name" required minlength="2"&gt;
+
+  &lt;label for="email"&gt;ایمیل:&lt;/label&gt;
+  &lt;input type="email" id="email" name="email" required&gt;
+
+  &lt;fieldset&gt;
+    &lt;legend&gt;جنسیت&lt;/legend&gt;
+    &lt;input type="radio" id="male" name="gender" value="male"&gt;
+    &lt;label for="male"&gt;مرد&lt;/label&gt;
+  &lt;/fieldset&gt;
+
+  &lt;button type="submit"&gt;ارسال&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+            </div>
+
+            <h3>انواع مهم input</h3>
+            <div class="table-wrap">
+              <table class="tbl">
+                <thead>
+                  <tr>
+                    <th>type</th>
+                    <th>کاربرد</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><code>email</code></td>
+                    <td>اعتبارسنجی خودکار فرمت ایمیل</td>
+                  </tr>
+                  <tr>
+                    <td><code>password</code></td>
+                    <td>پنهان کردن کاراکترها</td>
+                  </tr>
+                  <tr>
+                    <td><code>number</code></td>
+                    <td>فقط عدد، با min/max/step</td>
+                  </tr>
+                  <tr>
+                    <td><code>date</code></td>
+                    <td>انتخابگر تاریخ بومی مرورگر</td>
+                  </tr>
+                  <tr>
+                    <td><code>tel</code></td>
+                    <td>شماره تلفن، کیبورد عددی در موبایل</td>
+                  </tr>
+                  <tr>
+                    <td><code>file</code></td>
+                    <td>بارگذاری فایل</td>
+                  </tr>
+                  <tr>
+                    <td><code>range</code></td>
+                    <td>اسلایدر عددی</td>
+                  </tr>
+                  <tr>
+                    <td><code>search</code></td>
+                    <td>فیلد جست‌وجو با دکمه پاک‌کردن</td>
+                  </tr>
+                  <tr>
+                    <td><code>color</code></td>
+                    <td>انتخابگر رنگ بومی</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <aside class="note">
+              <p>
+                همیشه از <code>label</code> با ویژگی <code>for</code> متصل به
+                <code>id</code> ورودی استفاده کنید — هم کلیک روی برچسب فوکوس
+                می‌دهد، هم برای صفحه‌خوان‌ها ضروری است.
+              </p>
+            </aside>
+          </section>
+
+          
+
+          <section class="chapter" id="ch-11">
+            <header class="chapter__head">
+              <span class="chapter__num">07</span>
+              <h2>متادیتا و سئوی پایه</h2>
+            </header>
+            <div class="code-block">
+              <div class="code-block__bar">
+                <span class="code-block__name">head.html</span>
+              </div>
+              <pre class="code-block__pre"><code class="lang-html">&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;عنوان صفحه | نام سایت&lt;/title&gt;
+&lt;/head&gt;</code></pre>
+            </div>
+            <aside class="note">
+              <p>
+                تگ <code>viewport</code> برای واکنش‌گرا بودن صفحه در موبایل
+                ضروری است؛ بدون آن، مرورگر موبایل صفحه را با عرض دسکتاپ رندر
+                می‌کند.
+              </p>
+            </aside>
+          </section>
+
+          <section class="chapter" id="ch-12">
+            <header class="chapter__head">
+              <span class="chapter__num">08</span>
+              <h2>بهترین شیوه‌ها</h2>
+            </header>
+            <ul class="list">
+              <li>
+                همیشه از عنصر معنایی مناسب استفاده کنید، نه
+                <code>&lt;div&gt;</code> برای همه‌چیز.
+              </li>
+              <li>
+                برای دکمه‌های قابل‌کلیک از <code>&lt;button&gt;</code> استفاده
+                کنید، نه <code>&lt;div onclick&gt;</code>.
+              </li>
+              <li>
+                هر <code>&lt;img&gt;</code> باید <code>alt</code> داشته باشد؛
+                برای تصاویر تزئینی <code>alt=""</code> بگذارید.
+              </li>
+              <li>ساختار عنوان‌ها را سلسله‌مراتبی و بدون پرش نگه دارید.</li>
+              <li>
+                فرم‌ها را با <code>label</code> و اعتبارسنجی بومی
+                (<code>required</code>, <code>pattern</code>, <code>min</code>,
+                <code>max</code>) کامل کنید.
+              </li>
+              <li>
+                پیش از افزودن جاوااسکریپت برای رفتار رابط کاربری، بررسی کنید آیا
+                HTML بومی (<code>dialog</code>, <code>popover</code>,
+                <code>details</code>) همان کار را انجام می‌دهد.
+              </li>
+              <li>
+                برای لینک‌های <code>target="_blank"</code> همیشه
+                <code>rel="noopener noreferrer"</code> اضافه کنید.
+              </li>
+            </ul>
+          </section>
+
+          <section class="chapter" id="ch-13">
+            <header class="chapter__head">
+              <span class="chapter__num">09</span>
+              <h2> منابع بیشتر</h2>
+            </header>
+           
+            <ul class="list">
+              <li>MDN Web Docs — مرجع رسمی و کامل HTML</li>
+              <li>caniuse.com — بررسی پشتیبانی مرورگرها</li>
+              <li>web.dev — راهنماها و بهترین شیوه‌های تیم Chrome</li>
+              <li>validator.w3.org — اعتبارسنجی HTML</li>
+            </ul>
+          </section>
+        </article>
+      </main>
     </div>
+
+    <footer class="site-footer">
+      <p>
+        راهنمای HTML — ویرایش ۲۰۲۶ · تهیه‌شده برای دانشجویان و علاقه‌مندان به
+        توسعه وب
+      </p>
+    </footer>
 
     <script src="script.js"></script>
   </body>
