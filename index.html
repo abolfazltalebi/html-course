@@ -452,340 +452,572 @@
             </aside>
           </section>
 
-          <section class="chapter" id="ch-06">
-            <header class="chapter__head">
-              <span class="chapter__num">۰۶</span>
-              <h2>فرم‌ها</h2>
-            </header>
-            <p>
-              فرم‌ها راه اصلی دریافت اطلاعات از کاربر هستند. HTML امروزه انواع
-              ورودی و اعتبارسنجی پیشرفته‌ای را بدون نیاز به جاوااسکریپت ارائه
-              می‌دهد.
-            </p>
+    <section class="chapter" id="ch-06"> <header class="chapter__head"> <span class="chapter__num">۰۶</span> <h2>فرم‌ها</h2> </header>
 
-            <div class="code-block">
-              <div class="code-block__bar">
-                <span class="code-block__name">form.html</span>
-              </div>
-             <form action="/submit" method="post" enctype="multipart/form-data">
+<p> فرم‌ها راه اصلی دریافت اطلاعات از کاربر هستند. HTML امروزه انواع مختلفی از ورودی‌ها و اعتبارسنجی‌های اولیه را بدون نیاز به جاوااسکریپت ارائه می‌دهد. </p>
 
-  <!-- Text -->
-  <label for="name">نام:</label>
-  <input
-    type="text"
-    id="name"
-    name="name"
-    placeholder="نام خود را وارد کنید"
-    required
-    minlength="2"
-    maxlength="50"
-  >
+<div class="code-block"> <div class="code-block__bar"> <span class="code-block__name">form.html</span> </div>
 
-  <!-- Email -->
-  <label for="email">ایمیل:</label>
-  <input
-    type="email"
-    id="email"
-    name="email"
-    placeholder="example@email.com"
-    required
-  >
+<pre class="code-block__pre"><code class="lang-html">&lt;form action="/submit" method="post" enctype="multipart/form-data"&gt;
 
-  <!-- Password -->
-  <label for="password">رمز عبور:</label>
-  <input
-    type="password"
-    id="password"
-    name="password"
-    minlength="8"
-    maxlength="30"
-    required
-  >
+<label for="name">نام:</label>
+<input
+type="text"
+id="name"
+name="name"
+placeholder="نام خود را وارد کنید"
+required
+minlength="2"
+maxlength="50"
+>
 
-  <!-- Number -->
-  <label for="age">سن:</label>
-  <input
-    type="number"
-    id="age"
-    name="age"
-    min="18"
-    max="100"
-    step="1"
-  >
+<label for="email">ایمیل:</label>
+<input
+type="email"
+id="email"
+name="email"
+placeholder="example@email.com"
+required
+>
 
-  <!-- Tel -->
-  <label for="phone">شماره موبایل:</label>
-  <input
-    type="tel"
-    id="phone"
-    name="phone"
-    placeholder="09123456789"
-    pattern="09[0-9]{9}"
-  >
+<label for="password">رمز عبور:</label>
+<input
+type="password"
+id="password"
+name="password"
+minlength="8"
+maxlength="30"
+required
+>
 
-  <!-- URL -->
-  <label for="website">وب‌سایت:</label>
-  <input
-    type="url"
-    id="website"
-    name="website"
-    placeholder="https://example.com"
-  >
+<label for="age">سن:</label>
+<input
+type="number"
+id="age"
+name="age"
+min="18"
+max="100"
+step="1"
+>
 
-  <!-- Search -->
-  <label for="search">جستجو:</label>
-  <input
-    type="search"
-    id="search"
-    name="search"
-    placeholder="عبارت مورد نظر..."
-  >
+<label for="phone">شماره موبایل:</label>
+<input
+type="tel"
+id="phone"
+name="phone"
+placeholder="09123456789"
+pattern="09[0-9]{9}"
+>
 
-  <!-- Date -->
-  <label for="birthdate">تاریخ تولد:</label>
-  <input
-    type="date"
-    id="birthdate"
-    name="birthdate"
-  >
+<label for="website">وب‌سایت:</label>
+<input
+type="url"
+id="website"
+name="website"
+placeholder="https://example.com"
+>
 
-  <!-- Time -->
-  <label for="time">ساعت:</label>
-  <input
-    type="time"
-    id="time"
-    name="time"
-  >
+<label for="search">جستجو:</label>
+<input
+type="search"
+id="search"
+name="search"
+placeholder="عبارت مورد نظر..."
+>
 
-  <!-- Datetime Local -->
-  <label for="meeting">تاریخ و ساعت جلسه:</label>
-  <input
-    type="datetime-local"
-    id="meeting"
-    name="meeting"
-  >
+<label for="birthdate">تاریخ تولد:</label>
+<input
+type="date"
+id="birthdate"
+name="birthdate"
+>
 
-  <!-- Month -->
-  <label for="month">ماه:</label>
-  <input
-    type="month"
-    id="month"
-    name="month"
-  >
+<label for="time">ساعت:</label>
+<input
+type="time"
+id="time"
+name="time"
+>
 
-  <!-- Week -->
-  <label for="week">هفته:</label>
-  <input
-    type="week"
-    id="week"
-    name="week"
-  >
+<label for="meeting">تاریخ و ساعت جلسه:</label>
+<input
+type="datetime-local"
+id="meeting"
+name="meeting"
+>
 
-  <!-- Color -->
-  <label for="color">انتخاب رنگ:</label>
-  <input
-    type="color"
-    id="color"
-    name="color"
-    value="#3498db"
-  >
+<label for="month">ماه:</label>
+<input
+type="month"
+id="month"
+name="month"
+>
 
-  <!-- Range -->
-  <label for="volume">میزان صدا:</label>
-  <input
-    type="range"
-    id="volume"
-    name="volume"
-    min="0"
-    max="100"
-    value="50"
-  >
+<label for="week">هفته:</label>
+<input
+type="week"
+id="week"
+name="week"
+>
 
-  <!-- Radio -->
-  <fieldset>
-    <legend>جنسیت:</legend>
+<label for="color">رنگ مورد علاقه:</label>
+<input
+type="color"
+id="color"
+name="color"
+value="#3498db"
+>
 
-    <input
-      type="radio"
-      id="male"
-      name="gender"
-      value="male"
-    >
-    <label for="male">مرد</label>
+<label for="volume">میزان صدا:</label>
+<input
+type="range"
+id="volume"
+name="volume"
+min="0"
+max="100"
+value="50"
+>
 
-    <input
-      type="radio"
-      id="female"
-      name="gender"
-      value="female"
-    >
-    <label for="female">زن</label>
+<fieldset>
+<legend>جنسیت:</legend>
 
-    <input
-      type="radio"
-      id="other"
-      name="gender"
-      value="other"
-    >
-    <label for="other">سایر</label>
-  </fieldset>
+&lt;input
+  type="radio"
+  id="male"
+  name="gender"
+  value="male"
+  required
+&gt;
+&lt;label for="male"&gt;مرد&lt;/label&gt;
 
-  <!-- Checkbox -->
-  <fieldset>
-    <legend>مهارت‌ها:</legend>
+&lt;input
+  type="radio"
+  id="female"
+  name="gender"
+  value="female"
+&gt;
+&lt;label for="female"&gt;زن&lt;/label&gt;
 
-    <input
-      type="checkbox"
-      id="html"
-      name="skills"
-      value="html"
-    >
-    <label for="html">HTML</label>
+&lt;input
+  type="radio"
+  id="other"
+  name="gender"
+  value="other"
+&gt;
+&lt;label for="other"&gt;سایر&lt;/label&gt;
 
-    <input
-      type="checkbox"
-      id="css"
-      name="skills"
-      value="css"
-    >
-    <label for="css">CSS</label>
+</fieldset>
 
-    <input
-      type="checkbox"
-      id="javascript"
-      name="skills"
-      value="javascript"
-    >
-    <label for="javascript">JavaScript</label>
-  </fieldset>
+<fieldset>
+<legend>مهارت‌ها:</legend>
 
-  <!-- File -->
-  <label for="avatar">آپلود تصویر:</label>
-  <input
-    type="file"
-    id="avatar"
-    name="avatar"
-    accept="image/*"
-  >
+&lt;input
+  type="checkbox"
+  id="html"
+  name="skills"
+  value="html"
+&gt;
+&lt;label for="html"&gt;HTML&lt;/label&gt;
 
-  <!-- Select -->
-  <label for="city">شهر:</label>
-  <select id="city" name="city" required>
-    <option value="">انتخاب کنید</option>
-    <option value="tehran">تهران</option>
-    <option value="karaj">کرج</option>
-    <option value="tabriz">تبریز</option>
-    <option value="shiraz">شیراز</option>
-    <option value="mashhad">مشهد</option>
-  </select>
+&lt;input
+  type="checkbox"
+  id="css"
+  name="skills"
+  value="css"
+&gt;
+&lt;label for="css"&gt;CSS&lt;/label&gt;
 
-  <!-- Multiple Select -->
-  <label for="courses">دوره‌های مورد علاقه:</label>
-  <select
-    id="courses"
-    name="courses"
-    multiple
-  >
-    <option value="html">HTML</option>
-    <option value="css">CSS</option>
-    <option value="javascript">JavaScript</option>
-    <option value="react">React</option>
-  </select>
+&lt;input
+  type="checkbox"
+  id="javascript"
+  name="skills"
+  value="javascript"
+&gt;
+&lt;label for="javascript"&gt;JavaScript&lt;/label&gt;
 
-  <!-- Textarea -->
-  <label for="message">توضیحات:</label>
-  <textarea
-    id="message"
-    name="message"
-    rows="5"
-    cols="40"
-    placeholder="توضیحات خود را وارد کنید..."
-    maxlength="500"
-  ></textarea>
+&lt;input
+  type="checkbox"
+  id="react"
+  name="skills"
+  value="react"
+&gt;
+&lt;label for="react"&gt;React&lt;/label&gt;
 
-  <!-- Hidden -->
-  <input
-    type="hidden"
-    name="user_id"
-    value="12345"
-  >
+</fieldset>
 
-  <!-- Submit -->
-  <button type="submit">
-    ارسال فرم
-  </button>
+<label for="avatar">تصویر پروفایل:</label>
+<input
+type="file"
+id="avatar"
+name="avatar"
+accept="image/png, image/jpeg"
+>
 
-  <!-- Reset -->
-  <button type="reset">
-    پاک کردن فرم
-  </button>
+<label for="city">شهر:</label>
+<select id="city" name="city" required>
+<option value="">انتخاب کنید</option>
+<option value="tehran">تهران</option>
+<option value="karaj">کرج</option>
+<option value="tabriz">تبریز</option>
+<option value="shiraz">شیراز</option>
+<option value="mashhad">مشهد</option>
+</select>
 
-  <!-- Button -->
-  <button type="button">
-    دکمه معمولی
-  </button>
+<label for="courses">دوره‌های مورد علاقه:</label>
+<select id="courses" name="courses" multiple>
+<option value="html">HTML</option>
+<option value="css">CSS</option>
+<option value="javascript">JavaScript</option>
+<option value="react">React</option>
+</select>
 
-</form>
-            </div>
+<label for="message">توضیحات:</label>
+<textarea
+id="message"
+name="message"
+rows="5"
+maxlength="500"
+placeholder="توضیحات خود را وارد کنید..."
+></textarea>
 
-            <h3>انواع مهم input</h3>
-            <div class="table-wrap">
-              <table class="tbl">
-                <thead>
-                  <tr>
-                    <th>type</th>
-                    <th>کاربرد</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><code>email</code></td>
-                    <td>اعتبارسنجی خودکار فرمت ایمیل</td>
-                  </tr>
-                  <tr>
-                    <td><code>password</code></td>
-                    <td>پنهان کردن کاراکترها</td>
-                  </tr>
-                  <tr>
-                    <td><code>number</code></td>
-                    <td>فقط عدد، با min/max/step</td>
-                  </tr>
-                  <tr>
-                    <td><code>date</code></td>
-                    <td>انتخابگر تاریخ بومی مرورگر</td>
-                  </tr>
-                  <tr>
-                    <td><code>tel</code></td>
-                    <td>شماره تلفن، کیبورد عددی در موبایل</td>
-                  </tr>
-                  <tr>
-                    <td><code>file</code></td>
-                    <td>بارگذاری فایل</td>
-                  </tr>
-                  <tr>
-                    <td><code>range</code></td>
-                    <td>اسلایدر عددی</td>
-                  </tr>
-                  <tr>
-                    <td><code>search</code></td>
-                    <td>فیلد جست‌وجو با دکمه پاک‌کردن</td>
-                  </tr>
-                  <tr>
-                    <td><code>color</code></td>
-                    <td>انتخابگر رنگ بومی</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <aside class="note">
-              <p>
-                همیشه از <code>label</code> با ویژگی <code>for</code> متصل به
-                <code>id</code> ورودی استفاده کنید — هم کلیک روی برچسب فوکوس
-                می‌دهد، هم برای صفحه‌خوان‌ها ضروری است.
-              </p>
-            </aside>
-          </section>
+<input
+type="hidden"
+name="user_id"
+value="12345"
+>
 
+<button type="submit">ارسال فرم</button>
+<button type="reset">پاک کردن فرم</button>
+<button type="button">دکمه معمولی</button>
+
+</form></code></pre>
+
+</div>
+
+<h3>انواع مهم input</h3>
+
+<div class="table-wrap"> <table class="tbl"> <thead> <tr> <th>type</th> <th>کاربرد</th> </tr> </thead>
+
+  <tbody>
+    <tr>
+      <td><code>text</code></td>
+      <td>دریافت متن معمولی</td>
+    </tr>
+    <tr>
+      <td><code>email</code></td>
+      <td>دریافت ایمیل و بررسی فرمت آن</td>
+    </tr>
+    <tr>
+      <td><code>password</code></td>
+      <td>دریافت رمز عبور و مخفی کردن کاراکترها</td>
+    </tr>
+    <tr>
+      <td><code>number</code></td>
+      <td>دریافت عدد با امکان تعیین min، max و step</td>
+    </tr>
+    <tr>
+      <td><code>tel</code></td>
+      <td>دریافت شماره تلفن</td>
+    </tr>
+    <tr>
+      <td><code>url</code></td>
+      <td>دریافت آدرس وب‌سایت</td>
+    </tr>
+    <tr>
+      <td><code>search</code></td>
+      <td>فیلد مخصوص جست‌وجو</td>
+    </tr>
+    <tr>
+      <td><code>date</code></td>
+      <td>انتخاب تاریخ</td>
+    </tr>
+    <tr>
+      <td><code>time</code></td>
+      <td>انتخاب ساعت</td>
+    </tr>
+    <tr>
+      <td><code>datetime-local</code></td>
+      <td>انتخاب تاریخ و ساعت</td>
+    </tr>
+    <tr>
+      <td><code>month</code></td>
+      <td>انتخاب ماه و سال</td>
+    </tr>
+    <tr>
+      <td><code>week</code></td>
+      <td>انتخاب هفته و سال</td>
+    </tr>
+    <tr>
+      <td><code>color</code></td>
+      <td>انتخاب رنگ</td>
+    </tr>
+    <tr>
+      <td><code>range</code></td>
+      <td>انتخاب یک مقدار در یک بازه</td>
+    </tr>
+    <tr>
+      <td><code>radio</code></td>
+      <td>انتخاب فقط یک گزینه از چند گزینه</td>
+    </tr>
+    <tr>
+      <td><code>checkbox</code></td>
+      <td>انتخاب یک یا چند گزینه</td>
+    </tr>
+    <tr>
+      <td><code>file</code></td>
+      <td>انتخاب و بارگذاری فایل</td>
+    </tr>
+    <tr>
+      <td><code>hidden</code></td>
+      <td>ارسال مقدار مخفی همراه فرم</td>
+    </tr>
+  </tbody>
+</table>
+
+</div>
+
+<h3>ویژگی‌های مهم فرم و input</h3>
+
+<div class="table-wrap"> <table class="tbl"> <thead> <tr> <th>ویژگی</th> <th>کاربرد</th> </tr> </thead>
+
+  <tbody>
+    <tr>
+      <td><code>required</code></td>
+      <td>اجباری کردن ورود مقدار</td>
+    </tr>
+    <tr>
+      <td><code>placeholder</code></td>
+      <td>نمایش راهنمای موقت داخل input</td>
+    </tr>
+    <tr>
+      <td><code>value</code></td>
+      <td>تعیین مقدار اولیه ورودی</td>
+    </tr>
+    <tr>
+      <td><code>name</code></td>
+      <td>نام داده هنگام ارسال فرم به سرور</td>
+    </tr>
+    <tr>
+      <td><code>id</code></td>
+      <td>شناسه یکتا برای اتصال label و CSS یا JavaScript</td>
+    </tr>
+    <tr>
+      <td><code>min</code></td>
+      <td>حداقل مقدار مجاز</td>
+    </tr>
+    <tr>
+      <td><code>max</code></td>
+      <td>حداکثر مقدار مجاز</td>
+    </tr>
+    <tr>
+      <td><code>step</code></td>
+      <td>تعیین فاصله بین مقادیر عددی</td>
+    </tr>
+    <tr>
+      <td><code>minlength</code></td>
+      <td>حداقل تعداد کاراکتر</td>
+    </tr>
+    <tr>
+      <td><code>maxlength</code></td>
+      <td>حداکثر تعداد کاراکتر</td>
+    </tr>
+    <tr>
+      <td><code>pattern</code></td>
+      <td>تعیین الگوی مجاز برای مقدار ورودی</td>
+    </tr>
+    <tr>
+      <td><code>accept</code></td>
+      <td>تعیین نوع فایل‌های قابل انتخاب</td>
+    </tr>
+    <tr>
+      <td><code>multiple</code></td>
+      <td>اجازه انتخاب چند فایل یا گزینه</td>
+    </tr>
+    <tr>
+      <td><code>disabled</code></td>
+      <td>غیرفعال کردن ورودی</td>
+    </tr>
+    <tr>
+      <td><code>readonly</code></td>
+      <td>جلوگیری از ویرایش مقدار توسط کاربر</td>
+    </tr>
+    <tr>
+      <td><code>autofocus</code></td>
+      <td>قرار دادن خودکار فوکوس روی ورودی</td>
+    </tr>
+    <tr>
+      <td><code>autocomplete</code></td>
+      <td>کنترل پیشنهاد و تکمیل خودکار مرورگر</td>
+    </tr>
+  </tbody>
+</table>
+
+</div>
+
+<h3>ساختار کلی form</h3>
+
+<div class="code-block"> <div class="code-block__bar"> <span class="code-block__name">form-structure.html</span> </div>
+
+<pre class="code-block__pre"><code class="lang-html">&lt;form action="/submit" method="post"&gt;
+
+...
+</form></code></pre>
+
+</div>
+
+<ul> <li> <code>action</code> مشخص می‌کند اطلاعات فرم به چه آدرسی ارسال شوند. </li> <li> <code>method</code> روش ارسال اطلاعات را مشخص می‌کند. </li> <li> <code>GET</code> معمولاً برای جست‌وجو و دریافت اطلاعات استفاده می‌شود. </li> <li> <code>POST</code> معمولاً برای ارسال اطلاعات به سرور استفاده می‌شود. </li> <li> <code>enctype="multipart/form-data"</code> برای فرم‌هایی که فایل ارسال می‌کنند ضروری است. </li> </ul>
+
+<h3>اعتبارسنجی HTML5</h3>
+
+<p> HTML می‌تواند قبل از ارسال فرم، برخی خطاهای ورودی را به صورت خودکار بررسی کند. </p>
+
+<div class="code-block"> <div class="code-block__bar"> <span class="code-block__name">validation.html</span> </div>
+
+<pre class="code-block__pre"><code class="lang-html">&lt;input
+
+type="email"
+required
+>
+
+<input
+type="number"
+min="18"
+max="60"
+>
+
+<input
+type="text"
+minlength="3"
+maxlength="20"
+>
+
+<input
+type="tel"
+pattern="09[0-9]{9}"
+></code></pre>
+
+</div>
+
+<aside class="note"> <p> ویژگی <code>required</code> ورود مقدار را اجباری می‌کند. ویژگی‌های <code>min</code> و <code>max</code> محدوده عددی را مشخص می‌کنند و <code>minlength</code> و <code>maxlength</code> برای محدود کردن تعداد کاراکترها استفاده می‌شوند. </p> </aside>
+
+<h3>Radio و Checkbox</h3>
+
+<p> در <code>radio</code> گزینه‌هایی که قرار است فقط یکی از آن‌ها انتخاب شود، باید <code>name</code> یکسان داشته باشند. </p>
+
+<div class="code-block"> <div class="code-block__bar"> <span class="code-block__name">radio.html</span> </div>
+
+<pre class="code-block__pre"><code class="lang-html">&lt;input
+
+type="radio"
+name="gender"
+value="male"
+>
+
+<input
+type="radio"
+name="gender"
+value="female"
+></code></pre>
+
+</div>
+
+<p> در مقابل، <code>checkbox</code> برای انتخاب چند گزینه مناسب است. </p>
+
+<div class="code-block"> <div class="code-block__bar"> <span class="code-block__name">checkbox.html</span> </div>
+
+<pre class="code-block__pre"><code class="lang-html">&lt;input
+
+type="checkbox"
+name="skills"
+value="html"
+>
+
+<input
+type="checkbox"
+name="skills"
+value="css"
+>
+
+<input
+type="checkbox"
+name="skills"
+value="javascript"
+></code></pre>
+
+</div>
+
+<h3>select و option</h3>
+
+<p> برای ساخت منوی انتخابی از <code>select</code> و برای گزینه‌های داخل آن از <code>option</code> استفاده می‌کنیم. </p>
+
+<div class="code-block"> <div class="code-block__bar"> <span class="code-block__name">select.html</span> </div>
+
+<pre class="code-block__pre"><code class="lang-html">&lt;label for="city"&gt;شهر:&lt;/label&gt;
+
+<select id="city" name="city">
+<option value="">انتخاب کنید</option>
+<option value="tehran">تهران</option>
+<option value="tabriz">تبریز</option>
+<option value="shiraz">شیراز</option>
+</select></code></pre>
+
+</div>
+
+<aside class="note"> <p> برای انتخاب چند گزینه در <code>select</code> می‌توان از ویژگی <code>multiple</code> استفاده کرد. </p> </aside>
+
+<h3>textarea</h3>
+
+<p> برای دریافت متن‌های طولانی مانند توضیحات، پیام و نظر کاربر از <code>textarea</code> استفاده می‌شود. </p>
+
+<div class="code-block"> <div class="code-block__bar"> <span class="code-block__name">textarea.html</span> </div>
+
+<pre class="code-block__pre"><code class="lang-html">&lt;label for="message"&gt;پیام:&lt;/label&gt;
+
+<textarea
+id="message"
+name="message"
+rows="5"
+maxlength="500"
+placeholder="پیام خود را وارد کنید..."
+></textarea></code></pre>
+
+</div>
+
+<h3>button</h3>
+
+<div class="table-wrap"> <table class="tbl"> <thead> <tr> <th>type</th> <th>کاربرد</th> </tr> </thead>
+
+  <tbody>
+    <tr>
+      <td><code>submit</code></td>
+      <td>ارسال فرم</td>
+    </tr>
+    <tr>
+      <td><code>reset</code></td>
+      <td>بازگرداندن مقادیر فرم به حالت اولیه</td>
+    </tr>
+    <tr>
+      <td><code>button</code></td>
+      <td>دکمه معمولی بدون رفتار پیش‌فرض</td>
+    </tr>
+  </tbody>
+</table>
+
+</div>
+
+<div class="code-block"> <div class="code-block__bar"> <span class="code-block__name">button.html</span> </div>
+
+<pre class="code-block__pre"><code class="lang-html">&lt;button type="submit"&gt;ارسال&lt;/button&gt;
+
+<button type="reset">پاک کردن</button>
+
+<button type="button">دکمه معمولی</button></code></pre>
+
+</div>
+
+<aside class="note"> <p> اگر <code>type</code> را برای یک <code>button</code> داخل فرم مشخص نکنید، رفتار پیش‌فرض آن معمولاً مانند <code>submit</code> خواهد بود؛ بنابراین بهتر است نوع دکمه را همیشه به صورت صریح مشخص کنید. </p> </aside>
+
+<aside class="note"> <p> همیشه از <code>label</code> با ویژگی <code>for</code> متصل به <code>id</code> ورودی استفاده کنید. این کار هم دسترسی‌پذیری فرم را بهتر می‌کند و هم باعث می‌شود با کلیک روی متن label، ورودی مربوطه فوکوس یا انتخاب شود. </p> </aside> </section>
           
 
           <section class="chapter" id="ch-11">
